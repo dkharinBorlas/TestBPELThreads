@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAConfigPlan xmlns:jca="http://platform.integration.oracle/blocks/adapter/fw/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns:edl="http://schemas.oracle.com/events/edl" xmlns="http://schemas.oracle.com/soa/configplan">
+   <composite name="TestBPELThreadsV1">
+      <!--Add search and replace rules for the import section of a composite
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>-->
+      <import>
+         <searchReplace>
+            <search/>
+            <replace/>
+         </searchReplace>
+      </import>
+      <service name="testbpelthreads_client_ep">
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://xmlns.oracle.com/TestBPELThreads/TestBPELThreadsV1/TestBPELThreads#wsdl.endpoint(testbpelthreads_client_ep/TestBPELThreads_pt)</replace>
+            </attribute>
+         </binding>
+         <callback>
+            <binding type="ws">
+               <attribute name="port">
+                  <replace>http://xmlns.oracle.com/TestBPELThreads/TestBPELThreadsV1/TestBPELThreads#wsdl.endpoint(testbpelthreads_client_ep/TestBPELThreadsCallback_pt)</replace>
+               </attribute>
+            </binding>
+         </callback>
+      </service>
+      <service name="testsyncbpelthreads_client_ep">
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://xmlns.oracle.com/TestBPELThreads/TestBPELThreadsV1/TestSyncBPELThreads#wsdl.endpoint(testsyncbpelthreads_client_ep/TestSyncBPELThreads_pt)</replace>
+            </attribute>
+         </binding>
+      </service>
+      <service name="testonewaybpelthreads_client_ep">
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://xmlns.oracle.com/TestBPELThreads/TestBPELThreadsV1/TestOneWayBPELThreads#wsdl.endpoint(testonewaybpelthreads_client_ep/TestOneWayBPELThreads_pt)</replace>
+            </attribute>
+         </binding>
+      </service>
+      <service name="testbpelthreads_client"/>
+      <service name="testsyncbpelthreads_client"/>
+      <service name="testonewaybpelthreads_client"/>
+      <property name="productVersion">
+         <replace>12.1.3.0.0</replace>
+      </property>
+      <property name="compositeID">
+         <replace>6fc338ab-a97e-4621-9e13-904ff784d8de</replace>
+      </property>
+      <!--Add search and replace rules for the component properties
+	For components and service/reference bindings, you can add policy references.
+	Example:
+	<component name="*">
+		<wsp:PolicyReference orawsp:category="management" orawsp:status="enabled" URI="oracle/log_policy"/>
+	</component>-->
+      <component name="TestBPELThreads">
+         <property name="bpel.config.oneWayDeliveryPolicy">
+            <replace>async.cache</replace>
+         </property>
+      </component>
+      <component name="TestSyncBPELThreads">
+         <property name="bpel.config.transaction">
+            <replace>required</replace>
+         </property>
+      </component>
+      <component name="TestOneWayBPELThreads">
+         <property name="bpel.config.oneWayDeliveryPolicy">
+            <replace>async.cache</replace>
+         </property>
+      </component>
+   </composite>
+   <!--To configure monitor.config: 
+	<property name="enabled"><replace>true</replace></property>
+	<property name="dataObjectsFolder"><searchReplace><search>mydev</search><replace>myproduction</replace></searchReplace></property>
+	
+	sample properties to configure for adapter: 
+	<jca:property name="QueueName"><replace>medmq1</replace></jca:property>
+	
+	To add search and replace rules for wsdls, xsd and jca files
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>
+	-->
+   <wsdlAndSchema name="Schemas/singleString.xsd|Schemas/TestBPELThreads.xsd|Schemas/TestOneWayBPELThreads.xsd|Schemas/TestSyncBPELThreads.xsd|WSDLs/TestBPELThreads.wsdl|WSDLs/TestOneWayBPELThreads.wsdl|WSDLs/TestSyncBPELThreads.wsdl">
+      <searchReplace>
+         <search/>
+         <replace/>
+      </searchReplace>
+   </wsdlAndSchema>
+</SOAConfigPlan>
