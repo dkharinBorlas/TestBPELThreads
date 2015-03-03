@@ -1,2 +1,2 @@
 # TestBPELThreads
-SOA composite for testing
+SOA composite for testing threads processing
