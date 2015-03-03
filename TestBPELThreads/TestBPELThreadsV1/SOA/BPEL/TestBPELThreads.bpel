@@ -69,7 +69,7 @@
         <!-- Receive input from requestor. (Note: This maps to operation defined in TestBPELThreads.wsdl) -->
         <receive name="receiveInput" partnerLink="testbpelthreads_client" portType="client:TestBPELThreads" operation="process" variable="inputVariable" createInstance="yes"/>
         <wait name="Wait1">
-            <for>'PT10S'</for>
+            <for>'PT5S'</for>
         </wait>
         <assign name="AssignTEST">
             <copy>
