@@ -70,7 +70,7 @@
     <!-- Receive input from requestor. (Note: This maps to operation defined in TestSyncBPELThreads.wsdl) -->
     <receive name="receiveInput" partnerLink="testsyncbpelthreads_client" portType="client:TestSyncBPELThreads" operation="process" variable="inputVariable" createInstance="yes"/>
     <wait name="Wait1">
-      <for>'PT10S'</for>
+      <for>'PT7S'</for>
     </wait>
     <assign name="Assign1">
       <copy>
